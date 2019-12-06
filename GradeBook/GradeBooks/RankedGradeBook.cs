@@ -42,5 +42,31 @@ namespace GradeBook.GradeBooks
             else if (averageGrade >= gradeCutoffD) return 'D';
             else return 'F';
         }
+
+        public override void CalculateStatistics()
+        {
+            // Refuse to use a ranked grade book for a class of fewer than five students.
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+                return;
+            }
+
+            // Calculate using the base method.
+            base.CalculateStatistics();
+        }
+
+        public override void CalculateStudentStatistics(string name)
+        {
+            // Refuse to use a ranked grade book for a class of fewer than five students.
+            if (Students.Count < 5)
+            {
+                Console.WriteLine("Ranked grading requires at least 5 students with grades in order to properly calculate a student's overall grade.");
+                return;
+            }
+
+            // Calculate using the base method.
+            base.CalculateStudentStatistics(name);
+        }
     }
 }
